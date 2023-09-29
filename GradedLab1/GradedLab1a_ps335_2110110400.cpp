@@ -49,15 +49,22 @@ int main(){
             return 0;
         }
 
-        int arr[N];
-        cout<<"Enter the elements of array: ";
-        for(int i=0;i<N;i++){
-            cin>>arr[i];
+        if(N!=0){
+            int arr[N];
+            cout<<"Enter the elements of array: ";
+            for(int i=0;i<N;i++){
+                cin>>arr[i];
+            }
+            quickSort(arr,0,N-1,N);
+            cout<<"Sorted array: ";
+            printArray(arr,N);
+            cout<<endl<<endl;
         }
-        quickSort(arr,0,N-1,N);
-        cout<<"Sorted array: ";
-        printArray(arr,N);
-        cout<<endl<<endl;
+        else{
+            cout<<"Sorted array: "<<endl<<endl;
+        }
+
+        
     }
     return 0;
 }
