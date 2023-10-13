@@ -14,23 +14,28 @@
 using namespace std;
 
 // using radix sort
-void sort_bucket(vector<string> &vs){
+void sort_bucket(vector<string> &vs)
+{
     int n = vs.size();
     int max_len = 0;
     for (int i = 0; i < n; i++)
         max_len = max(max_len, (int)vs[i].size());
 
-    for(int i = 0; i < max_len;i++){
-        for(int j = 0; j < n; j++){
-            if(vs[j].size() <= i)
+    for (int i = 0; i < max_len; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (vs[j].size() <= i)
                 continue;
             int index = vs[j][i] - 'a';
             vector<string> temp;
             temp.push_back(vs[j]);
-            for(int k = j + 1; k < n; k++){
-                if(vs[k].size() <= i)
+            for (int k = j + 1; k < n; k++)
+            {
+                if (vs[k].size() <= i)
                     continue;
-                if(vs[k][i] == vs[j][i]){
+                if (vs[k][i] == vs[j][i])
+                {
                     temp.push_back(vs[k]);
                     vs.erase(vs.begin() + k);
                     n--;
@@ -38,14 +43,16 @@ void sort_bucket(vector<string> &vs){
                 }
             }
             sort(temp.begin(), temp.end());
-            for(int k = 0; k < temp.size(); k++){
+            for (int k = 0; k < temp.size(); k++)
+            {
                 vs[j + k] = temp[k];
             }
-        
+        }
     }
 }
 
-int main(){
+int main()
+{
 
     // inputs
     int n;
@@ -65,8 +72,10 @@ int main(){
         sort_bucket(bucket[i]);
 
     // printing the sorted order of strings
-    for (int i = 0; i < 26; i++){
-        for (int j = 0; j < bucket[i].size(); j++){
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = 0; j < bucket[i].size(); j++)
+        {
             cout << bucket[i][j] << endl;
         }
     }
