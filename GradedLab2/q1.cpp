@@ -20,7 +20,29 @@ void sort_bucket(vector<string> &vs){
     for (int i = 0; i < n; i++)
         max_len = max(max_len, (int)vs[i].size());
 
-    for(int i = 0; i < ) 
+    for(int i = 0; i < max_len;i++){
+        for(int j = 0; j < n; j++){
+            if(vs[j].size() <= i)
+                continue;
+            int index = vs[j][i] - 'a';
+            vector<string> temp;
+            temp.push_back(vs[j]);
+            for(int k = j + 1; k < n; k++){
+                if(vs[k].size() <= i)
+                    continue;
+                if(vs[k][i] == vs[j][i]){
+                    temp.push_back(vs[k]);
+                    vs.erase(vs.begin() + k);
+                    n--;
+                    k--;
+                }
+            }
+            sort(temp.begin(), temp.end());
+            for(int k = 0; k < temp.size(); k++){
+                vs[j + k] = temp[k];
+            }
+        
+    }
 }
 
 int main(){
