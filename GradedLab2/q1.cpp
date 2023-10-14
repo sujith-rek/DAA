@@ -64,16 +64,18 @@ int main()
     for (int i = 0; i < 26; i++)
         if (bucket[i].size() > 0)
         {
-            cout << "Bucket " <<  char(i + 'a') << " before sorting : "
-                 << endl, print_bucket(bucket[i]), cout << endl,
-            sort_bucket(bucket[i], max_len[i]);
-            cout << "Bucket " << char(i + 'a') << " after sorting : " 
+            cout << "Bucket " << char(i + 'a') << " before sorting : "
+                 << endl,
+                print_bucket(bucket[i]), cout << endl,
+                sort_bucket(bucket[i], max_len[i]);
+            cout << "Bucket " << char(i + 'a') << " after sorting : "
                  << endl,
                 print_bucket(bucket[i]), cout << endl;
         }
 
     // printing the sorted order of strings
-    cout<<endl<<"Sorted Order : "<<endl;
+    cout << endl
+         << "Sorted Order : " << endl;
     for (int i = 0; i < 26; i++)
     {
         if (bucket[i].size() > 0)
