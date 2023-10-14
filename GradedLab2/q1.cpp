@@ -11,7 +11,7 @@ void sort_bucket(vector<string> &vs, int max_len)
     // for each index we compare the characters and sort the strings
     // according to the characters at that index with the help of inbuilt sort function
     // its an balanced sort
-    for (int i = 0; i < max_len; i++)
+    for (int i = 1; i < max_len; i++)
     {
         for (int j = 0; j < n; j++)
         {
