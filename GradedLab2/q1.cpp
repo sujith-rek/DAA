@@ -3,45 +3,60 @@
 using namespace std;
 
 // using radix sort
-void sort_bucket(vector<string> &vs, int max_len) {
+void sort_bucket(vector<string> &vs, int max_len)
+{
     int n = vs.size();
     vector<string> output(n);
 
     // Sort by each character from right to left
-    for (int i = max_len - 1; i >= 0; i--) {
+    for (int i = max_len - 1; i >= 0; i--)
+    {
         // Count the frequency of each character
         vector<int> count(27, 0);
-        for (int j = 0; j < n; j++) {
-            if (i >= vs[j].size()) {
+        for (int j = 0; j < n; j++)
+        {
+            if (i >= vs[j].size())
+            {
                 count[0]++;
-            } else {
+            }
+            else
+            {
                 count[vs[j][i] - 'a' + 1]++;
             }
         }
 
         // Compute the prefix sum of the counts
-        for (int j = 1; j < 27; j++) {
+        for (int j = 1; j < 27; j++)
+        {
             count[j] += count[j - 1];
         }
 
         // Place the strings in the output array
-        for (int j = n - 1; j >= 0; j--) {
+        for (int j = n - 1; j >= 0; j--)
+        {
             int index;
-            if (i >= vs[j].size()) {
+            if (i >= vs[j].size())
+            {
                 index = count[0] - 1;
-            } else {
+            }
+            else
+            {
                 index = count[vs[j][i] - 'a' + 1] - 1;
             }
             output[index] = vs[j];
-            if (i >= vs[j].size()) {
+            if (i >= vs[j].size())
+            {
                 count[0]--;
-            } else {
+            }
+            else
+            {
                 count[vs[j][i] - 'a' + 1]--;
             }
         }
 
         // Copy the output array to the input array
-        for (int j = 0; j < n; j++) {
+        for (int j = 0; j < n; j++)
+        {
             vs[j] = output[j];
         }
     }
