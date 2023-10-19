@@ -41,6 +41,22 @@ void sort_by_index(vector<tuples> &v, int len){
     }
 }
 
+void arrange_words_by_length(int max_len, vector<string> &words){
+    vector<vector<string>> m(max_len);
+    for (int i = 0; i < words.size(); i++)
+    {
+        m[words[i].length()-1].push_back(words[i]);
+    }
+    words.clear();
+    for (int i = 0; i < max_len; i++)
+    {
+        for (int j = 0; j < m[i].size(); j++)
+        {
+            words.push_back(m[i][j]);
+        }
+    }
+}
+
 int main(){
 
     int n, len=0;
@@ -54,18 +70,26 @@ int main(){
         string s;
         cin>>s;
         words.push_back(s);
-        for (int j = 0; j < s.length(); j++)
-        {
-            tuples t;
-            t.index = j;
-            t.word = i;
-            t.letter = s[j];
-            v.push_back(t);
-        }
         if(len < s.length()){
             len = s.length();
         }
     }
+
+    // sort the vector of tuples by length
+    arrange_words_by_length(len, words);
+
+    for (int i = 0; i < words.size(); i++)
+    {
+        for (int j = 0; j < words[i].length(); j++)
+        {
+            tuples t;
+            t.index = j;
+            t.word = i;
+            t.letter = words[i][j];
+            v.push_back(t);
+        }
+    }
+
     cout<<"Tuples before any sorting: \n";
     for (int i = 0; i < v.size(); i++)
     {
