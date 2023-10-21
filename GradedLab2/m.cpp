@@ -7,6 +7,12 @@
 
 using namespace std;
 
+/**
+ * tuples is a struct which stores the index, word and letter
+ * index is the index of the word
+ * word is the index of the letter in the word or like a pointer to the word
+ * letter is the letter
+*/
 typedef struct tuples
 {
     int index;
@@ -51,7 +57,13 @@ void sort_by_letter(vector<tuples> &v)
     /**
      * Complexity Analysis:
      * 
-     * 1. First `for` loop runs for v.size() times 
+     * 1. First `for` loop runs for v.size() times i.e. |∑| which is number of tuples 
+     *    or number of total characters in all the words
+     * 2. Second `for` loop runs for 26 times which is constant
+     *    then the inner `for` loop runs for m[i].size() times which is the number of tuples
+     * 
+     * Overall complexity is O(|∑| + 26 * |∑|) which is O(|∑|)
+     * 
     */
 
 }
@@ -91,6 +103,16 @@ void sort_by_index(vector<tuples> &v, int len)
 
     return;
 
+    /**
+     * Complexity Analysis:
+     * 
+     * 1. First `for` loop runs for v.size() times i.e. |∑| which is number of tuples
+     * 2. Second `for` loop runs for len times which is the length of the longest word
+     *    then the inner `for` loop runs for m[i].size() times which is the number of tuples
+     *    with index i
+     * 
+     * Overall complexity is O(|∑| + len * |∑|) which is O(|∑|)
+    */
 
 }
 
@@ -129,6 +151,17 @@ void arrange_words_by_length(int max_len, vector<string> &words)
 
     return;
 
+    /**
+     * Complexity Analysis:
+     * 
+     * 1. First `for` loop runs for words.size() times i.e. n which is number of words
+     * 2. Second `for` loop runs for max_len times which is the length of the longest word
+     *    then the inner `for` loop runs for m[i].size() times which is the number of words
+     *    with length i
+     * 
+     * Overall complexity is O(n + max_len * n) which is O(n)
+     * 
+    */
 
 }
 
@@ -204,4 +237,16 @@ int main()
     {
         cout << words[v[i].word] << "\n";
     }
+
+    return 0;
+
+    /**
+     * Complexity Analysis:
+     * 
+     * 1. sort_by_letter() runs in O(|∑|) time
+     * 2. sort_by_index() runs in O(|∑|) time
+     * 3. arrange_words_by_length() runs in O(n) time
+     * 
+     * Overall complexity is O(|∑| + |∑| + n) which is O(|∑| + n)
+    */
 }
