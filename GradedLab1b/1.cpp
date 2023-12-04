@@ -61,6 +61,41 @@ int largest_connected_component(vector<vector<int>> &graph){
     return ans;
 }
 
+vector<int> longest_connected_path(vector<vector<int>> &graph){
+    int n = graph.size();
+    vector<int> dist(n, INT_MAX);
+    vector<int> parent(n, -1);
+    queue<int> q;
+    q.push(0);
+    dist[0] = 0;
+    while(!q.empty()){
+        int u = q.front();
+        q.pop();
+        for(int v: graph[u]){
+            if(dist[v] == INT_MAX){
+                dist[v] = dist[u] + 1;
+                parent[v] = u;
+                q.push(v);
+            }
+        }
+    }
+    int max_dist = 0;
+    int max_node = 0;
+    for(int i = 0; i < n; i++){
+        if(dist[i] > max_dist){
+            max_dist = dist[i];
+            max_node = i;
+        }
+    }
+    vector<int> path;
+    while(max_node != -1){
+        path.push_back(max_node);
+        max_node = parent[max_node];
+    }
+    reverse(path.begin(), path.end());
+    return path;
+}
+
 
 int main(){
     
@@ -77,7 +112,13 @@ int main(){
     }
     file.close();
 
-    cout << "Largest connected component: " << largest_connected_component(graph) << endl;
-    cout << "Girth: " << girth(graph) << endl;
+    vector<int> path = longest_connected_path(graph);
+
+    cout << "Length of longest connected componenet: " << path.size() << endl;
+    cout << "Longest connected path: "<< endl;
+    for(int i = 0; i < path.size(); i++){
+        cout << path[i] << " ";
+    }
+    // cout << "Girth: " << girth(graph) << endl;
 
 }
